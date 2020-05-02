@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# Licensed to Elasticsearch B.V. under one or more agreements.
+# Elasticsearch B.V. licenses this file to you under the Apache 2.0 License.
+# See the LICENSE file in the project root for more information.
+
+set -euxo pipefail
+
+BUILD_ID="$BUILD_ID"
+
+CLIENT_BRANCH="$CLIENT_BRANCH"
+CLIENT_COMMIT="$CLIENT_COMMIT"
+CLIENT_BENCHMARK_ENVIRONMENT="$CLIENT_BENCHMARK_ENVIRONMENT"
+
+DATA_SOURCE="$DATA_SOURCE"
+
+TARGET_SERVICE_TYPE="$TARGET_SERVICE_TYPE"
+TARGET_SERVICE_NAME="$TARGET_SERVICE_NAME"
+TARGET_SERVICE_VERSION="$TARGET_SERVICE_VERSION"
+TARGET_SERVICE_OS_FAMILY="$TARGET_SERVICE_OS_FAMILY"
+
+set +x # Prevent leaking of the credentials to the log
+ELASTICSEARCH_TARGET_URL="$ELASTICSEARCH_TARGET_URL"
+ELASTICSEARCH_REPORT_URL="$ELASTICSEARCH_REPORT_URL"
+set -x
+
+cd benchmarks && bundle exec ruby bin/run.rb
